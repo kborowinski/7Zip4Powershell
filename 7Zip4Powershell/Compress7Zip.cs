@@ -55,6 +55,9 @@ namespace SevenZip4PowerShell {
         [Parameter(HelpMessage = "Enables encrypting filenames when using the 7z format")]
         public SwitchParameter EncryptFilenames { get; set; }
 
+        [Parameter(HelpMessage = "Preserves directory root")]
+        public SwitchParameter PreserveDirectoryRoot { get; set; } = true;
+
         [Parameter(HelpMessage = "Disables preservation of directory structure")]
         public SwitchParameter FlattenDirectoryStructure { get; set; }
 
@@ -166,6 +169,7 @@ namespace SevenZip4PowerShell {
                     CompressionMethod = _cmdlet.CompressionMethod,
                     VolumeSize = _cmdlet.VolumeSize,
                     EncryptHeaders = _cmdlet.EncryptFilenames.IsPresent,
+                    PreserveDirectoryRoot = _cmdlet.PreserveDirectoryRoot.IsPresent,
                     DirectoryStructure = !_cmdlet.FlattenDirectoryStructure.IsPresent,
                     IncludeEmptyDirectories = !_cmdlet.SkipEmptyDirectories.IsPresent,
                     CompressionMode = _cmdlet.Append.IsPresent ? CompressionMode.Append : CompressionMode.Create
